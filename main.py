@@ -2,14 +2,17 @@ import subprocess
 import sanic
 import os
 import platform
+import aiofiles
 
 app = sanic.Sanic(name="clip2http")
+
+print("Clip2Http")
 
 @app.post("/post")
 async def post(request: sanic.Request):
     content = request.json["content"]
-    with open("tmp", "w") as f:
-        f.write(content)
+    async with aiofiles.open("tmp", "w") as f:
+        await f.write(content)
     if platform.system() == "Windows":
         proc = subprocess.Popen(f'clip < tmp', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result = proc.communicate()

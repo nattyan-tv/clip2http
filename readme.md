@@ -3,7 +3,7 @@ Windows及びLinux向け クリップボード同期センター
 
 ## 起動方法
 1. `pip3 install -r requirements.txt`などしてモジュールをインストールします。
-Linuxの場合、xclipをインストールします。
+Linuxの場合、xclipをインストールします。（知らんけど）
 
 ディストリビューション|コマンド
 ---|---
