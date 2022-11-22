@@ -3,10 +3,13 @@ import sanic
 import os
 import platform
 import aiofiles
+import json
 
 app = sanic.Sanic(name="clip2http")
 
 print("Clip2Http")
+
+SETTING = json.load(open("setting.json", "r"))
 
 @app.post("/post")
 async def post(request: sanic.Request):
@@ -37,4 +40,4 @@ async def post(request: sanic.Request):
         result = proc.communicate()
         return sanic.response.text(result[0])
 
-app.run(host="0.0.0.0", port=8080)
+app.run(host=SETTING["host"], port=SETTING["port"])
